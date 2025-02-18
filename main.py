@@ -8,8 +8,6 @@ from langchain_google_genai import (
 from langchain_core.prompts import ChatPromptTemplate
 import os
 import PyPDF2
-import time
-from google.api_core.exceptions import ResourceExhausted
 
 key = config('GENAI_API_KEY')
 
@@ -17,6 +15,8 @@ key = config('GENAI_API_KEY')
 
 
 llm = ChatGoogleGenerativeAI(
+    model="gemini-2.0-pro-exp-02-05",
+    safety_settings={
         HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
     },
     api_key=key,
